@@ -42,7 +42,7 @@ public class AdminView {
                     break;
                 case 2: //Implemented Method
                     System.out.println("\n=== TOTAL PROFIT ===");
-                    System.out.println("Total profit: " + adminController.getTotalProfit() + " €");
+                    System.out.println("Total profit: €" + adminController.getTotalProfit());
                     break;
                 case 3:
                     System.out.println("\n=== MONTHLY SALES AND PROFIT ===");

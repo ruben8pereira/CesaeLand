@@ -1,5 +1,6 @@
 package Controllers;
 
+import Domain.User;
 import Model.UsersRepository;
 
 import java.io.FileNotFoundException;
@@ -11,6 +12,13 @@ public class LoginController {
         this.userRepository = new UsersRepository();
     }
 
+    /**
+     * Verifies user credentials and returns the access type
+     *
+     * @param usernameInput Username entered
+     * @param passwordInput Password entered
+     * @return String with the access type ("ADMIN", "ENG", or "ERROR")
+     */
     public String accessType(String usernameInput, String passwordInput) {
         String accessType = "ERROR";
 

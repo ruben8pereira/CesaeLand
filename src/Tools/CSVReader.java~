@@ -1,5 +1,6 @@
 package Tools;
 
+import Domain.Attraction;
 import Domain.Cost;
 import Domain.Sale;
 import Domain.User;
@@ -19,7 +20,7 @@ public class CSVReader {
         Scanner sc = new Scanner(new File(filePath));
 
         // Ignorar a primeira linha
-        sc.nextLine();
+        //sc.nextLine();
 
         // Ciclo que vai iterar para cada linha do ficheiro
         while (sc.hasNextLine()) {
@@ -61,7 +62,7 @@ public class CSVReader {
             String[] splitedLine = line.split(";");
 
             //Criar objeto User
-            Sale newSale = new Sale(Integer.parseInt(splitedLine[0]), splitedLine[1], Integer.parseInt(splitedLine[2]));
+            Sale newSale = new Sale(Integer.parseInt(splitedLine[0]), splitedLine[1], splitedLine[2]);
 
             // Adicionar novo User ao Array
             salesArrayRead.add(newSale);
@@ -98,5 +99,35 @@ public class CSVReader {
         }
 
         return costsArrayRead;
+    }
+
+    public static ArrayList<Attraction> readAttractionsFileToArray(String filePath) throws FileNotFoundException {
+
+        // Intanciar o Array de Users vazio
+        ArrayList<Attraction> attractionsArrayRead = new ArrayList<Attraction>();
+
+        // Instanciar Scanner para ler o ficheiro (caminho passado por parâmetro)
+        Scanner sc = new Scanner(new File(filePath));
+
+        // Ignorar a primeira linha
+        sc.nextLine();
+
+        // Ciclo que vai iterar para cada linha do ficheiro
+        while (sc.hasNextLine()) {
+
+            // Guardamos toda a linha na variável: linha
+            String line = sc.nextLine();
+
+            // Criamos um Array de Strings, onde cada posição terá uma coluna da lunha
+            String[] splitedLine = line.split(";");
+
+            //Criar objeto User
+            Attraction newAttraction = new Attraction(Integer.parseInt(splitedLine[0]), (splitedLine[1]), Double.parseDouble(splitedLine[2]), Double.parseDouble(splitedLine[3]), Integer.parseInt(splitedLine[4]));
+
+            // Adicionar novo User ao Array
+            attractionsArrayRead.add(newAttraction);
+        }
+
+        return attractionsArrayRead;
     }
 }

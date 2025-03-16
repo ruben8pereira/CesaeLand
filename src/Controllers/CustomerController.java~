@@ -23,6 +23,7 @@ public class CustomerController {
         ArrayList<Attraction> attractions = attractionsRepository.getAttractionsList();
 
         System.out.println("------------------- AVAILABLE ATTRACTIONS -------------------");
+
         for (Attraction attraction : attractions) {
             // Format duration as min:sec
             int minutes = attraction.getDurationInSeconds() / 60;
@@ -35,6 +36,7 @@ public class CustomerController {
                     " | Child Ticket: " + attraction.getChildTicket() + "€" +
                     " | Duration: " + duration);
         }
+
         System.out.println("----------------------------------------------------------");
     }
 

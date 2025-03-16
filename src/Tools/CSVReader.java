@@ -19,9 +19,6 @@ public class CSVReader {
         // Instanciar Scanner para ler o ficheiro (caminho passado por parâmetro)
         Scanner sc = new Scanner(new File(filePath));
 
-        // Ignorar a primeira linha
-        sc.nextLine();
-
         // Ciclo que vai iterar para cada linha do ficheiro
         while (sc.hasNextLine()) {
 
@@ -62,7 +59,7 @@ public class CSVReader {
             String[] splitedLine = line.split(";");
 
             //Criar objeto User
-            Sale newSale = new Sale(Integer.parseInt(splitedLine[0]), splitedLine[1], Integer.parseInt(splitedLine[2]));
+            Sale newSale = new Sale(Integer.parseInt(splitedLine[0]), splitedLine[1], splitedLine[2]);
 
             // Adicionar novo User ao Array
             salesArrayRead.add(newSale);

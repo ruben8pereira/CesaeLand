@@ -22,40 +22,38 @@ public class EngineerController {
      * Shows attraction ID, name and number of tickets until review
      */
     public void getUpcomingReviews() {
+        // Implementing this method as the one required functionality for Engineer
         ArrayList<Attraction> attractions = attractionsRepository.getAttractionsList();
         ArrayList<Sale> sales = salesRepository.getSalesList();
 
         // Count tickets sold for each attraction
-        int[] ticketCounter = new int[10];
+        int[] ticketCounter = new int[11]; // Starting from index 1 to match attraction IDs
 
         for (Sale sale : sales) {
-            int id = sale.getAttractionId();
-            ticketCounter[id - 1]++;
+            ticketCounter[sale.getAttractionId()]++;
         }
 
-        // Arrays to store attraction information and tickets until review
+        // Create arrays to store attraction information and tickets until review
         int[] attractionIds = new int[attractions.size()];
         String[] attractionNames = new String[attractions.size()];
         int[] ticketsUntilReview = new int[attractions.size()];
 
-        // Calculate tickets until next review
+        // Calculate tickets until next review (50 tickets per review)
         for (int i = 0; i < attractions.size(); i++) {
             Attraction attraction = attractions.get(i);
-            int id = attraction.getId();
-
-            int soldTickets = ticketCounter[id - 1];
+            int soldTickets = ticketCounter[attraction.getId()];
             int remainingTickets = 50 - (soldTickets % 50);
 
             if (remainingTickets == 50) {
-                remainingTickets = 0; // Review needed immediately
+                remainingTickets = 0; // Review needed now
             }
 
-            attractionIds[i] = id;
+            attractionIds[i] = attraction.getId();
             attractionNames[i] = attraction.getName();
             ticketsUntilReview[i] = remainingTickets;
         }
 
-        // Bubble sort to sort by tickets until review
+        // Sort by tickets until review (ascending) using simple bubble sort
         for (int i = 0; i < attractions.size() - 1; i++) {
             for (int j = 0; j < attractions.size() - i - 1; j++) {
                 if (ticketsUntilReview[j] > ticketsUntilReview[j + 1]) {
@@ -78,19 +76,25 @@ public class EngineerController {
         }
 
         // Display the 3 nearest reviews
-        System.out.println("---------------------- UPCOMING REVIEWS ----------------------");
+        System.out.println("+------+--------------------------------+-------------------+");
+        System.out.println("| ID   | Attraction                     | Tickets Until Rev |");
+        System.out.println("+------+--------------------------------+-------------------+");
+
         for (int i = 0; i < attractions.size() && i < 3; i++) {
-            System.out.println("ID: " + attractionIds[i] +
-                    " | Attraction: " + attractionNames[i] +
-                    " | Tickets until review: " + ticketsUntilReview[i]);
+            System.out.printf("| %-4d | %-30s | %-17d |\n",
+                    attractionIds[i],
+                    attractionNames[i],
+                    ticketsUntilReview[i]);
         }
-        System.out.println("--------------------------------------------------------------");
+
+        System.out.println("+------+--------------------------------+-------------------+");
     }
 
     /**
      * Gets the history of maintenance reviews (3 most recent reviews)
      */
     public void getReviewsHistory() {
+        // Method declaration only, not implemented yet
         System.out.println("Not implemented yet");
     }
 }

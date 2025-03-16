@@ -12,6 +12,12 @@ public class LoginView {
         this.loginController = new LoginController();
     }
 
+    /**
+     * Displays the main system entry menu
+     * Allows choosing between customer, staff member, or exit
+     *
+     * @throws FileNotFoundException If an error occurs while accessing files
+     */
     public void entryView() throws FileNotFoundException {
         Scanner input = new Scanner(System.in);
 
@@ -19,7 +25,7 @@ public class LoginView {
 
         do {
             System.out.println("Welcome to CESAE Land");
-            System.out.println("1. Costumer");
+            System.out.println("1. Customer");
             System.out.println("2. Staff Member");
             System.out.println("0. Exit");
 
@@ -28,9 +34,9 @@ public class LoginView {
             loginOption = input.nextInt();
 
             switch (loginOption) {
-                case 1: // Costumer
-//                    CustomerView customerView = new CustomerView();
-//                    customerView.customerMenu();
+                case 1: // Customer
+                    CustomerView customerView = new CustomerView();
+                    customerView.customerMenu();
                     break;
                 case 2: // Staff Member
                     System.out.println("\nLogin with your credentials:");
@@ -52,6 +58,14 @@ public class LoginView {
         } while (loginOption != 0);
     }
 
+    /**
+     * Validates staff member login credentials
+     * Directs users to the menu corresponding to their access type
+     *
+     * @param usernameInput Username entered
+     * @param passwordInput Password entered
+     * @throws FileNotFoundException If an error occurs while accessing menus
+     */
     private void validateLogin(String usernameInput, String passwordInput) throws FileNotFoundException {
         String access = loginController.accessType(usernameInput, passwordInput);
 

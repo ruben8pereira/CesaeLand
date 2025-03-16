@@ -3,12 +3,12 @@ package Domain;
 public class Sale {
     private int attractionId;
     private String date;
-    private int durationInSeconds;
+    private String clientType;
 
-    public Sale(int attractionId, String date, int durationInSeconds) {
+    public Sale(int attractionId, String date, String clientType) {
         this.attractionId = attractionId;
         this.date = date;
-        this.durationInSeconds = durationInSeconds;
+        this.clientType = clientType;
     }
 
     public int getAttractionId() {
@@ -19,7 +19,7 @@ public class Sale {
         return date;
     }
 
-    public int getDurationInSeconds() {
-        return durationInSeconds;
+    public String getClientType() {
+        return clientType;
     }
 }

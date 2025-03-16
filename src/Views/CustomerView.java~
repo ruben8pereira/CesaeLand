@@ -27,7 +27,7 @@ public class CustomerView {
             option = input.nextInt();
 
             switch (option) {
-                case 1: //Implemented Method
+                case 1:
                     System.out.println("\n=== AVAILABLE ATTRACTIONS ===");
                     customerController.listAvailableAttractions();
                     break;
